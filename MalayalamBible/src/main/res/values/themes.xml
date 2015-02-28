@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Theme" parent="android:Theme">
+		<item name="android:windowNoTitle">true</item>
+	</style>
+
+	<style name="Theme.White">
+	    <item name="pageBackground">@style/page_background_white</item>
+	    <item name="pageHeader">@style/page_header_white</item>
+	    <item name="pageHeaderText">@style/page_header_text_white</item>
+	    <item name="tableRowSection">@style/table_row_section_white</item>
+	    <item name="tableRow">@style/table_row_white</item>
+	    <item name="textView">@style/text_view_white</item>
+	    <item name="textView2">@style/text_view_white2</item>
+	    <item name="textViewSection">@style/text_view_section_white</item>
+	    <item name="textViewSection2">@style/text_view_white2</item>
+	    <item name="button">@style/button_wh</item>
+	    <item name="gridView">@style/page_background_white</item>
+	    <item name="buttonBarItem">@style/button_bar_item_white</item>
+	    <item name="infoButton">@style/info_button_white</item>
+	    <item name="textViewHeading">@style/text_view_heading_white</item>
+	    <item name="textViewHeading2">@style/text_view_heading_white2</item>
+	</style>
+	
+	<style name="Theme.Black">
+	    <item name="pageBackground">@style/page_background_black</item>
+	    <item name="pageHeader">@style/page_header_black</item>
+	    <item name="pageHeaderText">@style/page_header_text_black</item>
+	    <item name="tableRowSection">@style/table_row_section_black</item>
+	    <item name="tableRow">@style/table_row_black</item>
+	    <item name="textView">@style/text_view_black</item>
+	    <item name="textView2">@style/text_view_black2</item>
+	    <item name="textViewSection">@style/text_view_section_black</item>
+	    <item name="textViewSection2">@style/text_view_section_black2</item>
+	    <item name="button">@style/button_wh</item>
+	    <item name="gridView">@style/page_background_black</item>
+	    <item name="buttonBarItem">@style/button_bar_item_black</item>
+	    <item name="infoButton">@style/info_button_black</item>
+	    <item name="textViewHeading">@style/text_view_heading_black</item>
+	    <item name="textViewHeading2">@style/text_view_heading_black2</item>
+	</style>
+	
+	<style name="Theme.Maroon" parent="Theme.Black">
+	    <item name="pageBackground">@style/page_background_maroon</item>
+	    <item name="pageHeader">@style/page_header_maroon</item>
+	    <item name="pageHeaderText">@style/page_header_text_white</item>
+	    <item name="tableRow">@style/table_row_maroon</item>
+	    <item name="gridView">@style/page_background_maroon</item>
+	</style>
+	
+	<style name="Theme.LightGreen" parent="Theme.White">
+	    <item name="pageBackground">@style/page_background_lg</item>
+	    <item name="pageHeader">@style/page_header_lg</item>
+	    <item name="pageHeaderText">@style/page_header_text_lg</item>
+	    <item name="tableRowSection">@style/table_row_section_lg</item>
+	    <item name="tableRow">@style/table_row_lg</item>
+	    <item name="gridView">@style/page_background_lg</item>
+	    <item name="textViewHeading">@style/text_view_heading_lg</item>
+	    <item name="textViewHeading2">@style/text_view_heading_lg2</item>
+	    <item name="buttonBarItem">@style/button_bar_item_black</item>
+	    <item name="textViewSection">@style/text_view_section_black</item>
+	    <item name="textViewSection2">@style/text_view_section_black2</item>
+	</style>
+	
+	<style name="Theme.Yellow" parent="Theme.White">
+	    <item name="pageBackground">@style/page_background_yellow</item>
+	    <item name="pageHeader">@style/page_header_yellow</item>
+	    <item name="pageHeaderText">@style/page_header_text_yellow</item>
+	    <item name="tableRowSection">@style/table_row_section_yellow</item>
+	    <item name="tableRow">@style/table_row_yellow</item>
+	    <item name="textView">@style/text_view_yellow</item>
+	    <item name="textView2">@style/text_view_yellow2</item>
+	    <item name="gridView">@style/page_background_yellow</item>
+	    <item name="textViewHeading">@style/text_view_heading_yellow</item>
+	    <item name="textViewHeading2">@style/text_view_heading_yellow2</item>
+	    <item name="buttonBarItem">@style/button_bar_item_black</item>
+	    <item name="textViewSection">@style/text_view_section_yellow</item>
+	    <item name="textViewSection2">@style/text_view_yellow2</item>
+	</style>
+</resources>

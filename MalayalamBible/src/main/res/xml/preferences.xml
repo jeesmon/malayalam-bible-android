@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- This is a primitive example showing the different types of preferences available. -->
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="Preferences">
+        
+        <PreferenceScreen
+            android:title="Languages"
+            android:summary="Select languages">
+           	<ListPreference
+	           android:title="Primary Language"
+	           android:summary="Select primary language to display"
+	           android:key="com.jeesmon.malayalambible.language.primary"
+	           android:defaultValue="0"
+	           android:entries="@array/languages"
+	           android:entryValues="@array/language_values" />
+           	<ListPreference
+	           android:title="Second Language"
+	           android:summary="Select second language to display"
+	           android:key="com.jeesmon.malayalambible.language.secondary"
+	           android:defaultValue="-1"
+	           android:entries="@array/sec_languages"
+	           android:entryValues="@array/sec_language_values" />
+        </PreferenceScreen>
+        
+        <ListPreference
+	           android:title="Display Layout"
+	           android:summary="Select a display layout for multiple languages"
+	           android:key="com.jeesmon.malayalambible.language.layout"
+	           android:defaultValue="1"
+	           android:entries="@array/language_layout"
+	           android:entryValues="@array/language_layout_values" />
+        
+        <ListPreference
+           android:title="Font Size"
+           android:summary="Change font size of text"
+           android:key="com.jeesmon.malayalambible.fontsizekey"
+           android:defaultValue="4"
+           android:entries="@array/font_sizes"
+           android:entryValues="@array/font_sizes_values" />
+        
+        <ListPreference
+           android:title="Theme"
+           android:summary="Change application theme"
+           android:key="com.jeesmon.malayalambible.theme"
+           android:defaultValue="0"
+           android:entries="@array/themes"
+           android:entryValues="@array/themes_values" />
+        
+        <ListPreference
+           android:title="Unicode Rendering"
+           android:summary="Unicode rendering fixes for older versions of Android"
+           android:key="com.jeesmon.malayalambible.rendering.option"
+           android:defaultValue="0"
+           android:entries="@array/rendering_options"
+           android:entryValues="@array/rendering_options_values" />
+        
+        <PreferenceScreen
+            android:title="Bookmarks"
+            android:summary="Bookmark options">
+           	<CheckBoxPreference
+           	    android:title="Group by date"
+           	    android:summary="Group bookmarks by date"
+           	    android:key="com.jeesmon.malayalambible.bookmark.group"
+           	    android:defaultValue="false" />
+           	<CheckBoxPreference
+           	    android:title="Bookmark on long press"
+           	    android:summary="Bookmark verses on long press"
+           	    android:key="com.jeesmon.malayalambible.bookmark.longpress"
+           	    android:defaultValue="true" />
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

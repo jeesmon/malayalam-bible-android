@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    style="?pageBackground">
+    
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical"
+	    style="?pageBackground">
+    
+    <LinearLayout android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_vertical|center_horizontal"
+    	android:orientation="horizontal">
+    	
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/headingLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="center_vertical"
+	    android:stretchColumns="2"
+	    style="?pageHeader">
+	    <TableRow
+	        android:paddingTop="2dp"
+		    android:paddingRight="2dp"
+		    android:gravity="center_vertical|center_horizontal">
+	        <Button
+	    	    android:id="@+id/backButton"
+	    	    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        style="?buttonBarItem"
+		        android:text="Books"
+		        android:layout_marginLeft="2dp"
+		    />
+	        <Button
+	            android:id="@+id/chaptersButton"
+	    	    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        style="?buttonBarItem"
+		        android:text=" # "
+		        android:layout_marginLeft="2dp"/>
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:orientation="vertical">
+		        <TextView
+			        android:id="@+id/heading"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical|center_horizontal"
+			        android:text=""
+					style="?pageHeaderText" />
+		        <TextView
+			        android:id="@+id/headingSec"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical|center_horizontal"
+			        android:text=""
+					style="?pageHeaderText"
+					android:visibility="gone" />
+	        </LinearLayout>
+	        <Button
+	    	    android:id="@+id/prevButton"
+	    	    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        style="?buttonBarItem"
+		        android:text="Prev"
+		        android:visibility="invisible"
+		        android:layout_marginRight="2dp"
+		    />
+	        <Button
+	    	    android:id="@+id/nextButton"
+	    	    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        style="?buttonBarItem"
+		        android:text="Next"
+		        android:visibility="invisible"
+		        android:layout_marginRight="2dp"
+		    />
+	    </TableRow>
+	</TableLayout>
+	</LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:layout_weight="1">
+	    
+        <LinearLayout android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_weight="0.5">
+		    <TextView
+		        android:id="@+id/chapterNumber"
+		        android:layout_width="fill_parent"
+		        android:layout_height="18dp"
+		        android:text=""
+		        android:paddingLeft="2dp"
+		        style="?textViewHeading" />
+		    
+			<com.jeesmon.malayalambible.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			 android:id="@+id/oScrollViewOne" 
+		     android:scrollbars="vertical" 
+		     android:layout_height="fill_parent" 
+		     android:layout_width="fill_parent"
+		     android:layout_weight="1">
+		        
+			    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			    android:id="@+id/chapterLayout"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:shrinkColumns="*">
+				</TableLayout>
+			</com.jeesmon.malayalambible.ObservableScrollView>
+		</LinearLayout>
+		
+        <LinearLayout android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_weight="0.5">
+			<TextView
+		        android:id="@+id/chapterNumberSec"
+		        android:layout_width="fill_parent"
+		        android:layout_height="18dp"
+		        android:text=""
+		        android:paddingLeft="2dp"
+		        style="?textViewHeading" />
+			
+			<com.jeesmon.malayalambible.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+			 android:id="@+id/oScrollViewTwo" 
+		     android:scrollbars="vertical" 
+		     android:layout_height="fill_parent" 
+		     android:layout_width="fill_parent"
+		     android:layout_weight="0.5">
+			    
+			    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			    android:id="@+id/chapterLayoutSec"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:shrinkColumns="*">
+				</TableLayout>		     
+			</com.jeesmon.malayalambible.ObservableScrollView>            
+        </LinearLayout>	    
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/showFullChapter"
+		android:id="@+id/backToChapter"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:background="#cccccc"
+		android:textColor="#000000"
+		android:padding="3dp"
+		android:clickable="true"
+		android:onClick="onBackToChapterClickEvent"
+		android:visibility="gone"
+	/>
+    
+    </LinearLayout>
+    
+    <ImageView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:src="@drawable/bubblerightgray48"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentRight="true" 
+			android:id="@+id/BubbleRightView"
+			android:onClick="onAppMenuClickEvent">
+    </ImageView>
+    
+    </RelativeLayout>
+</LinearLayout>

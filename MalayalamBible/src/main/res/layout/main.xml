@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    style="?pageBackground">
+    
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/headingLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:stretchColumns="1"
+	    style="?pageHeader">
+	    <TableRow
+	        android:gravity="center_vertical|center_horizontal">
+	        <Button
+	    	    android:id="@+id/backButton"
+	    	    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        style="?buttonBarItem"
+		        android:text="Back"
+		        android:layout_marginLeft="2dp"
+		    />
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:orientation="vertical">
+		        <TextView
+			        android:id="@+id/heading"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical|center_horizontal"
+			        android:text=""
+			        android:paddingTop="5dp"
+			        style="?pageHeaderText"
+					/>
+		        <TextView
+			        android:id="@+id/headingSec"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical|center_horizontal"
+			        android:text=""
+			        android:paddingBottom="2dp"
+			        style="?pageHeaderText"
+			        android:visibility="gone" />
+	        </LinearLayout>
+	        <Button
+	    	    android:id="@+id/infoButton"
+	    	    android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        style="?infoButton"
+		        android:text="i"
+		        android:textSize="12dp"
+		        android:textStyle="bold"
+		        android:layout_marginRight="2dp"
+		        android:visibility="invisible"
+		    />
+	    </TableRow>
+	</TableLayout>
+
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+     android:layout_height="fill_parent" 
+     android:layout_width="fill_parent">
+    
+	    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/booksLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:stretchColumns="0">
+		</TableLayout>
+     
+	</ScrollView>
+</LinearLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?pageBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?pageBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal" >
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/headingLayout"
+            style="?pageHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:stretchColumns="2" >
+
+            <TableRow
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="2dp" >
+
+                <Button
+                    android:id="@+id/backButton"
+                    style="?buttonBarItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Books" />
+
+                <Button
+                    android:id="@+id/chaptersButton"
+                    style="?buttonBarItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text=" # " />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/heading"
+                        style="?pageHeaderText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/prevButton"
+                    style="?buttonBarItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:text="Prev"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/nextButton"
+                    style="?buttonBarItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:text="Next"
+                    android:visibility="invisible" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/chapterNumber"
+        style="?textViewHeading"
+        android:layout_width="fill_parent"
+        android:layout_height="18dp"
+        android:paddingLeft="2dp"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="vertical" >
+
+            <TableLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/chapterLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:shrinkColumns="*" >
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/showFullChapter"
+		android:id="@+id/backToChapter"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:background="#cccccc"
+		android:textColor="#000000"
+		android:padding="3dp"
+		android:clickable="true"
+		android:onClick="onBackToChapterClickEvent"
+		android:visibility="gone"
+	/>
+    
+    </LinearLayout>
+    
+    <ImageView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" 
+			android:src="@drawable/bubblerightgray48"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentRight="true" 
+			android:id="@+id/BubbleRightView"
+			android:onClick="onAppMenuClickEvent">
+    </ImageView>
+	</RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- View styles -->
+	<attr name="pageBackground" format="reference" />
+	<attr name="pageHeader" format="reference" />
+	<attr name="pageHeaderText" format="reference" />
+	<attr name="tableRowSection" format="reference" />
+	<attr name="tableRow" format="reference" />
+	<attr name="textView" format="reference" />
+	<attr name="textView2" format="reference" />
+	<attr name="textViewSection" format="reference" />
+	<attr name="textViewSection2" format="reference" />
+	<attr name="button" format="reference" />
+	<attr name="gridView" format="reference" />
+	<attr name="buttonBarItem" format="reference" />
+	<attr name="infoButton" format="reference" />
+	<attr name="textViewHeading" format="reference" />
+	<attr name="textViewHeading2" format="reference" />
+</resources>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme.White -->
+    <style name="page_background_white">
+ 		<item name="android:background">#fff</item>
+ 	</style>
+ 	
+    <style name="page_header_white">
+ 		<item name="android:background">@drawable/page_header_white</item>
+ 	</style>
+ 	
+    <style name="page_header_text_white">
+    	<item name="android:textColor">#fff</item>
+    	<item name="android:textSize">14dp</item>
+    </style>
+ 	
+    <style name="table_row_section_white">
+		<item name="android:background">@drawable/cell_shape_section_white</item>
+	</style>
+	
+    <style name="table_row_white">
+		<item name="android:background">@drawable/cell_shape_white</item>
+	</style>
+	
+	<style name="text_view_white">
+		<item name="android:textColor">#000</item>
+	</style>
+	
+	<style name="text_view_white2">
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+	<style name="text_view_section_white">
+		<item name="android:textColor">#fff</item>
+	</style>
+	
+	<style name="button_wh">
+		<item name="android:background">@drawable/button_wh</item>
+	</style>
+	
+	<style name="button_bar_item_white">
+	    <item name="android:textColor">#fff</item>
+	    <item name="android:textSize">12dp</item>
+		<item name="android:background">@drawable/button_bar_item_white</item>
+	</style>
+	
+	<style name="info_button_white">
+	    <item name="android:background">@drawable/info_button_white</item>
+	    <item name="android:textColor">#7288a5</item>
+	</style>
+	
+	<style name="text_view_heading_white">
+		<item name="android:background">@drawable/cell_shape_section_white</item>
+		<item name="android:textColor">#fff</item>
+	</style>
+	
+	<style name="text_view_heading_white2">
+		<item name="android:background">@drawable/cell_shape_section_white</item>
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+	<!-- Theme.Black -->
+   	
+   	<style name="page_background_black">
+		<item name="android:background">#000</item>
+	</style>
+	
+   	<style name="page_header_black">
+ 		<item name="android:background">#696969</item>
+ 	</style>
+ 	
+   	<style name="page_header_text_black">
+    	<item name="android:textColor">#fff</item>
+    	<item name="android:textSize">14dp</item>
+    </style>
+	
+   	<style name="table_row_section_black">
+		<item name="android:background">@drawable/cell_shape_section_black</item>
+	</style>
+	
+	<style name="table_row_black">
+		<item name="android:background">@drawable/cell_shape_black</item>
+	</style>
+	
+	<style name="text_view_black">
+		<item name="android:textColor">#fff</item>
+	</style>
+	
+	<style name="text_view_black2">
+		<item name="android:textColor">#d3d3d3</item>
+	</style>
+	
+	<style name="text_view_section_black">
+		<item name="android:textColor">#000</item>
+	</style>
+	
+	<style name="text_view_section_black2">
+		<item name="android:textColor">#000</item>
+	</style>
+	
+	<style name="button_bar_item_black">
+	    <item name="android:textColor">#000</item>
+	    <item name="android:textSize">12dp</item>
+	    <item name="android:background">@drawable/button_bar_item_black</item>
+	</style>
+	
+	<style name="info_button_black">
+	    <item name="android:background">@drawable/info_button_black</item>
+	</style>
+	
+	<style name="text_view_heading_black">
+		<item name="android:background">#d3d3d3</item>
+		<item name="android:textColor">#000</item>
+	</style>
+	
+	<style name="text_view_heading_black2">
+		<item name="android:background">#d3d3d3</item>
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+	<!-- Theme.Maroon -->
+	<style name="page_background_maroon">
+		<item name="android:background">#7B1113</item>
+	</style>
+	
+	<style name="page_header_maroon">
+ 		<item name="android:background">#a52a2a</item>
+ 	</style>
+ 	
+ 	<style name="table_row_maroon">
+		<item name="android:background">@drawable/cell_shape_maroon</item>
+	</style>
+	
+ 	<!-- Theme.LightGreen -->
+	<style name="page_background_lg">
+		<item name="android:background">#8fbc8f</item>
+	</style>
+	
+	<style name="page_header_lg">
+ 		<item name="android:background">#228b22</item>
+ 	</style>
+ 	
+	<style name="page_header_text_lg">
+    	<item name="android:textColor">#000</item>
+    	<item name="android:textSize">14dp</item>
+    </style>
+ 	
+ 	<style name="table_row_lg">
+		<item name="android:background">@drawable/cell_shape_lg</item>
+	</style>
+	
+ 	<style name="table_row_section_lg">
+		<item name="android:background">#d3d3d3</item>
+	</style>
+	
+ 	<style name="text_view_heading_lg">
+		<item name="android:background">@drawable/cell_shape_section_lg</item>
+		<item name="android:textColor">#000</item>
+	</style>
+	
+ 	<style name="text_view_heading_lg2">
+		<item name="android:background">@drawable/cell_shape_section_lg</item>
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+	<!-- Theme.Yellow -->
+	<style name="page_background_yellow">
+		<item name="android:background">#ffffe0</item>
+	</style>
+	
+	<style name="page_header_yellow">
+ 		<item name="android:background">#eee8aa</item>
+ 	</style>
+ 	
+ 	<style name="page_header_text_yellow">
+    	<item name="android:textColor">#00f</item>
+    	<item name="android:textSize">14dp</item>
+    </style>
+    
+    <style name="table_row_section_yellow">
+		<item name="android:background">#d3d3d3</item>
+	</style>
+	
+    <style name="table_row_yellow">
+		<item name="android:background">@drawable/cell_shape_yellow</item>
+	</style>
+	
+    <style name="text_view_section_yellow">
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+    <style name="text_view_heading_yellow">
+		<item name="android:background">@drawable/cell_shape_section_lg</item>
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+    <style name="text_view_heading_yellow2">
+		<item name="android:background">@drawable/cell_shape_section_lg</item>
+		<item name="android:textColor">#000</item>
+	</style>
+	
+    <style name="text_view_yellow">
+		<item name="android:textColor">#00f</item>
+	</style>
+	
+    <style name="text_view_yellow2">
+		<item name="android:textColor">#000</item>
+	</style>
+</resources>
