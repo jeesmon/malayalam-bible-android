@@ -23,7 +23,7 @@ public class FontService {
 	}
 
     private void initialize(AssetManager mgr) {
-        typeface = Typeface.createFromAsset(mgr, "fonts/NotoSansMalayalam.ttf");
+        typeface = Typeface.createFromAsset(mgr, "fonts/AnjaliNewLipi-light.ttf");
         hackedTypeface = Typeface.createFromAsset(mgr, "fonts/AnjaliOldLipi.ttf");
     }
 
