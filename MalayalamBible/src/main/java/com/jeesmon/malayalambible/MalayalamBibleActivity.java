@@ -98,10 +98,13 @@ public class MalayalamBibleActivity extends BaseActivity {
 		TextView tv = (TextView) findViewById(R.id.heading);
 		if (tf == null) {
 			tv.setText(R.string.bookseng);
+            setTitle("Books");
 		} else {
 			tv.setTypeface(tf);
 			tv.setText(ComplexCharacterMapper.fix(
 					res.getString(R.string.books), renderingFix));
+            setTitle(getSpannableTitleString(ComplexCharacterMapper.fix(
+                    res.getString(R.string.books), renderingFix), tf));
 		}
 
 		TableLayout tl = (TableLayout) findViewById(R.id.booksLayout);

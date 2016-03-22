@@ -2,36 +2,39 @@ package com.jeesmon.malayalambible;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.jeesmon.malayalambible.utils.Constants;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends ActionBarActivity {
 	protected static final int OPEN_BOOKMARKS_ACTIVITY = 0;
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
-		return true;
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.about:
+		case R.id.action_info:
 			showInfoActivity(this);
 			return true;
-		case R.id.preferences:
+		case R.id.action_settings:
 			showPrefenceActivity(this);
 			return true;
-		case R.id.bookmarks:
+		case R.id.action_bookmarks:
 			openBookmarksActivity(this);
 			return true;
 		default:
@@ -116,4 +119,11 @@ public class BaseActivity extends Activity {
 
 		return book;
 	}
+
+    public SpannableString getSpannableTitleString(String str, Typeface tf) {
+        SpannableString s = new SpannableString(str);
+        s.setSpan(new TypefaceSpan(this, tf), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return s;
+    }
 }

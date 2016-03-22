@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.ClipboardManager;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -198,24 +199,20 @@ public class ChapterViewActivity extends BaseActivity implements
 		setupToolbar();
 
 		Resources res = getResources();
-		/*
-		 * Typeface tf = language == Preference.LANG_MALAYALAM ?
-		 * Typeface.createFromAsset(getAssets(),
-		 * res.getString(R.string.font_name)) : null;
-		 */
 		Typeface tf = language == Preference.LANG_MALAYALAM ? FontService.getInstance(getAssets())
 				.getTypeface() : null;
 
 		TextView tv = (TextView) findViewById(R.id.heading);
 		if (tf == null) {
 			tv.setText(book.getEnglishName());
+            setTitle(book.getEnglishName());
 		} else {
 			tv.setTypeface(tf);
 			tv.setText(book.getName());
+            setTitle(getSpannableTitleString(ComplexCharacterMapper.fix(book.getName(), renderingFix), tf));
 		}
 
 		tv = (TextView) findViewById(R.id.chapterNumber);
-		// tv.setTextSize(fontSize);
 
 		if (tf == null) {
 			tv.setText(res.getString(R.string.chaptereng) + " " + chapterId);
@@ -280,10 +277,6 @@ public class ChapterViewActivity extends BaseActivity implements
 		setupToolbar();
 
 		Resources res = getResources();
-		/*
-		 * Typeface tf = Typeface.createFromAsset(getAssets(),
-		 * res.getString(R.string.font_name));
-		 */
 		Typeface tf = FontService.getInstance(getAssets()).getTypeface();
 		TextView tv = (TextView) findViewById(R.id.heading);
 		if (language == Preference.LANG_MALAYALAM) {
@@ -413,10 +406,6 @@ public class ChapterViewActivity extends BaseActivity implements
 		setupToolbar();
 
 		Resources res = getResources();
-		/*
-		 * Typeface tf = Typeface.createFromAsset(getAssets(),
-		 * res.getString(R.string.font_name));
-		 */
 		Typeface tf = FontService.getInstance(getAssets()).getTypeface();
 
 		TextView tv = (TextView) findViewById(R.id.heading);
@@ -436,7 +425,6 @@ public class ChapterViewActivity extends BaseActivity implements
 		}
 
 		tv = (TextView) findViewById(R.id.chapterNumber);
-		// tv.setTextSize(fontSize);
 		if (language == Preference.LANG_MALAYALAM) {
 			tv.setTypeface(tf);
 			tv.setText(ComplexCharacterMapper.fix(
@@ -447,7 +435,6 @@ public class ChapterViewActivity extends BaseActivity implements
 		}
 
 		tv = (TextView) findViewById(R.id.chapterNumberSec);
-		// tv.setTextSize(fontSize);
 		if (secLanguage == Preference.LANG_MALAYALAM) {
 			tv.setTypeface(tf);
 			tv.setText(ComplexCharacterMapper.fix(
@@ -676,10 +663,7 @@ public class ChapterViewActivity extends BaseActivity implements
 		button = (Button) findViewById(R.id.chaptersButton);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent chaptersView = new Intent(ChapterViewActivity.this,
-						ChaptersActivity.class);
-				chaptersView.putExtra("com.jeesmon.malayalambible.Book", book);
-				startActivity(chaptersView);
+                showChapters();
 			}
 		});
 
@@ -709,7 +693,14 @@ public class ChapterViewActivity extends BaseActivity implements
 		}
 	}
 
-	private class WorkerThread extends Thread {
+    private void showChapters() {
+        Intent chaptersView = new Intent(this,
+                ChaptersActivity.class);
+        chaptersView.putExtra("com.jeesmon.malayalambible.Book", book);
+        startActivity(chaptersView);
+    }
+
+    private class WorkerThread extends Thread {
 		@Override
 		public void run() {
 			Preference pref = Preference.getInstance(ChapterViewActivity.this);
@@ -1220,4 +1211,27 @@ public class ChapterViewActivity extends BaseActivity implements
 			return true;
 		}
 	}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_chapter_view, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_books:
+                startActivity(new Intent(ChapterViewActivity.this,
+                        MalayalamBibleActivity.class));
+                return true;
+            case R.id.action_chapters:
+                showChapters();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

@@ -1,18 +1,16 @@
 package com.jeesmon.malayalambible;
 
-import com.jeesmon.malayalambible.service.FontService;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.jeesmon.malayalambible.service.FontService;
 
 public class ChaptersActivity extends BaseActivity {
 	private static boolean preferenceChanged = false;
@@ -45,21 +43,9 @@ public class ChaptersActivity extends BaseActivity {
 		setContentView(R.layout.chapters);
 
 		Resources res = getResources();
-		/*
-		 * Typeface tf = Typeface.createFromAsset(getAssets(),
-		 * res.getString(R.string.font_name));
-		 */
 
 		Typeface tf = FontService.getInstance(getAssets()).getTypeface();
 		final Activity activity = this;
-		Button back = (Button) findViewById(R.id.backButton);
-		back.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				activity.finish();
-				startActivity(new Intent(ChaptersActivity.this,
-						MalayalamBibleActivity.class));
-			}
-		});
 
 		final Preference pref = Preference.getInstance(this);
 		int renderingFix = pref.getRendering();
@@ -76,7 +62,6 @@ public class ChaptersActivity extends BaseActivity {
 
 		if (pref.getSecLanguage() != Preference.LANG_NONE) {
 			tv = (TextView) findViewById(R.id.chaptersSec);
-			// tv.setVisibility(View.VISIBLE);
 			if (pref.getSecLanguage() == Preference.LANG_MALAYALAM) {
 				tv.setTypeface(tf);
 				tv.setText(ComplexCharacterMapper.fix(
@@ -92,27 +77,39 @@ public class ChaptersActivity extends BaseActivity {
 			Book book = (Book) extras
 					.getSerializable("com.jeesmon.malayalambible.Book");
 
-			tv = (TextView) findViewById(R.id.heading);
 			if (pref.getLanguage() == Preference.LANG_MALAYALAM) {
-				tv.setTypeface(tf);
-				tv.setText(book.getName());
+                setTitle(getSpannableTitleString(ComplexCharacterMapper.fix(book.getName(), renderingFix), tf));
 			} else {
-				tv.setText(book.getEnglishName());
-			}
-
-			if (pref.getSecLanguage() != Preference.LANG_NONE) {
-				tv = (TextView) findViewById(R.id.headingSec);
-				// tv.setVisibility(View.VISIBLE);
-				if (pref.getSecLanguage() == Preference.LANG_MALAYALAM) {
-					tv.setTypeface(tf);
-					tv.setText(book.getName());
-				} else {
-					tv.setText(book.getEnglishName());
-				}
+                setTitle(book.getEnglishName());
 			}
 
 			GridView gridview = (GridView) findViewById(R.id.gridview);
 			gridview.setAdapter(new ChapterButtonAdapter(this, book, this));
 		}
 	}
+
+    private void showBooks(Activity activity) {
+        activity.finish();
+        startActivity(new Intent(this,
+                MalayalamBibleActivity.class));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_chapters, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_books:
+                showBooks(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

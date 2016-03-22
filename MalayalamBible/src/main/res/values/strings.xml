@@ -110,6 +110,7 @@
 	<string name="bookmarkVerses">Bookmark Verses</string>
 	<string name="bookmarkChapter">Bookmark Chapter</string>
 	<string name="bookmarks">Show Bookmarks</string>
+    <string name="search">Search</string>
 	<string name="play">Play Audio</string>
 	<string name="pause">Pause Audio</string>
 	<string name="notes">Notes</string>

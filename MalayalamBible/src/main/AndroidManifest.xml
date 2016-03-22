@@ -13,7 +13,7 @@
         android:name=".MalayalamBibleApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name_short"
-        android:theme="@style/Theme.White" >
+        android:theme="@style/AppTheme" >
         <activity
             android:label="@string/app_name"
             android:name=".MalayalamBibleActivity" >
