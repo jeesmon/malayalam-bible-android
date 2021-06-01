@@ -40,10 +40,10 @@ public class BookmarksProviderWrapper {
 			+ MalayalamBibleBookmarksContentProvider.BOOKMARKS_TABLE);
 
 	private static String[] sBookmarksProjection = new String[] {
-			Browser.BookmarkColumns._ID, Browser.BookmarkColumns.TITLE,
-			Browser.BookmarkColumns.URL, Browser.BookmarkColumns.VISITS,
-			Browser.BookmarkColumns.DATE, Browser.BookmarkColumns.CREATED,
-			Browser.BookmarkColumns.BOOKMARK, Browser.BookmarkColumns.FAVICON };
+			"_ID", "TITLE",
+			"URL", "VISITS",
+			"DATE", "CREATED",
+			"BOOKMARK", "FAVICON" };
 
 	/**
 	 * Bookmarks management.
@@ -63,22 +63,22 @@ public class BookmarksProviderWrapper {
 
 	public static Cursor getBookmarks(ContentResolver contentResolver,
 			int sortMode) {
-		String whereClause = Browser.BookmarkColumns.BOOKMARK + " = 1";
+		String whereClause = "BOOKMARK" + " = 1";
 
 		String orderClause;
 		switch (sortMode) {
 		case 0:
-			orderClause = Browser.BookmarkColumns.VISITS + " DESC, "
-					+ Browser.BookmarkColumns.TITLE + " COLLATE NOCASE";
+			orderClause = "VISITS" + " DESC, "
+					+ "TITLE" + " COLLATE NOCASE";
 			break;
 		case 1:
-			orderClause = Browser.BookmarkColumns.TITLE + " COLLATE NOCASE";
+			orderClause = "TITLE" + " COLLATE NOCASE";
 			break;
 		case 2:
-			orderClause = Browser.BookmarkColumns.CREATED + " DESC";
+			orderClause = "CREATED" + " DESC";
 			break;
 		default:
-			orderClause = Browser.BookmarkColumns.TITLE + " COLLATE NOCASE";
+			orderClause = "TITLE" + " COLLATE NOCASE";
 			break;
 		}
 
@@ -99,11 +99,11 @@ public class BookmarksProviderWrapper {
 			ContentResolver contentResolver, int limit) {
 		List<BookmarkItem> result = new ArrayList<BookmarkItem>();
 
-		String whereClause = Browser.BookmarkColumns.BOOKMARK + " = 1";
-		String orderClause = Browser.BookmarkColumns.VISITS + " DESC";
-		String[] colums = new String[] { Browser.BookmarkColumns._ID,
-				Browser.BookmarkColumns.TITLE, Browser.BookmarkColumns.URL,
-				Browser.BookmarkColumns.FAVICON };
+		String whereClause = "BOOKMARK"+ " = 1";
+		String orderClause = "VISITS" + " DESC";
+		String[] colums = new String[] { "_ID",
+				"TITLE", "URL",
+				"FAVICON" };
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 				whereClause, null, orderClause);
@@ -111,11 +111,11 @@ public class BookmarksProviderWrapper {
 		if (cursor != null) {
 			if (cursor.moveToFirst()) {
 				int columnId = cursor
-						.getColumnIndex(Browser.BookmarkColumns._ID);
+						.getColumnIndex("_ID");
 				int columnTitle = cursor
-						.getColumnIndex(Browser.BookmarkColumns.TITLE);
+						.getColumnIndex("TITLE");
 				int columnUrl = cursor
-						.getColumnIndex(Browser.BookmarkColumns.URL);
+						.getColumnIndex("URL");
 
 				int count = 0;
 				while (!cursor.isAfterLast() && (count < limit)) {
@@ -141,16 +141,16 @@ public class BookmarksProviderWrapper {
 	public static BookmarkItem getBookmarkById(ContentResolver contentResolver,
 			long id) {
 		BookmarkItem result = null;
-		String whereClause = Browser.BookmarkColumns._ID + " = " + id;
+		String whereClause = "_ID" + " = " + id;
 
 		Cursor c = contentResolver.query(BOOKMARKS_URI, sBookmarksProjection,
 				whereClause, null, null);
 		if (c != null) {
 			if (c.moveToFirst()) {
 				String title = c.getString(c
-						.getColumnIndex(Browser.BookmarkColumns.TITLE));
+						.getColumnIndex("TITLE"));
 				String url = c.getString(c
-						.getColumnIndex(Browser.BookmarkColumns.URL));
+						.getColumnIndex("URL"));
 				result = new BookmarkItem(id, title, url);
 			}
 
@@ -161,21 +161,21 @@ public class BookmarksProviderWrapper {
 	}
 
 	public static void deleteBookmark(ContentResolver contentResolver, long id) {
-		String whereClause = Browser.BookmarkColumns._ID + " = " + id;
+		String whereClause = "_ID" + " = " + id;
 
 		Cursor c = contentResolver.query(BOOKMARKS_URI, sBookmarksProjection,
 				whereClause, null, null);
 		if (c != null) {
 			if (c.moveToFirst()) {
-				if (c.getInt(c.getColumnIndex(Browser.BookmarkColumns.BOOKMARK)) == 1) {
+				if (c.getInt(c.getColumnIndex("BOOKMARK")) == 1) {
 					if (c.getInt(c
-							.getColumnIndex(Browser.BookmarkColumns.VISITS)) > 0) {
+							.getColumnIndex("VISITS")) > 0) {
 
 						// If this record has been visited, keep it in history,
 						// but remove its bookmark flag.
 						ContentValues values = new ContentValues();
-						values.put(Browser.BookmarkColumns.BOOKMARK, 0);
-						values.putNull(Browser.BookmarkColumns.CREATED);
+						values.put("BOOKMARK", 0);
+						values.putNull("CREATED");
 
 						contentResolver.update(BOOKMARKS_URI, values,
 								whereClause, null);
@@ -215,18 +215,18 @@ public class BookmarksProviderWrapper {
 		boolean bookmarkExist = false;
 
 		if (id != -1) {
-			String[] colums = new String[] { Browser.BookmarkColumns._ID };
-			String whereClause = Browser.BookmarkColumns._ID + " = " + id;
+			String[] colums = new String[] { "_ID" };
+			String whereClause = "_ID" + " = " + id;
 
 			Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 					whereClause, null, null);
 			bookmarkExist = (cursor != null) && (cursor.moveToFirst());
 		} else {
-			String[] colums = new String[] { Browser.BookmarkColumns._ID,
-					Browser.BookmarkColumns.CREATED };
-			String whereClause = Browser.BookmarkColumns.URL + " = \"" + url
+			String[] colums = new String[] { "_ID",
+					"CREATED" };
+			String whereClause = "URL" + " = \"" + url
 					+ "\"";
-			String orderClause = Browser.BookmarkColumns.CREATED + " DESC";
+			String orderClause = "CREATED" + " DESC";
 
 			Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 					whereClause, null, orderClause);
@@ -234,7 +234,7 @@ public class BookmarksProviderWrapper {
 			if (bookmarkExist) {
 				try {
 					long dateLong = cursor.getLong(cursor
-							.getColumnIndex(Browser.BookmarkColumns.CREATED));
+							.getColumnIndex("CREATED"));
 					Date date = new Date(dateLong);
 					Calendar cal = Calendar.getInstance();
 					int m = cal.get(Calendar.MONTH);
@@ -247,7 +247,7 @@ public class BookmarksProviderWrapper {
 						bookmarkExist = false;
 					} else {
 						id = cursor.getLong(cursor
-								.getColumnIndex(Browser.BookmarkColumns._ID));
+								.getColumnIndex("_ID"));
 					}
 				} catch (Exception e) {
 					bookmarkExist = false;
@@ -257,23 +257,23 @@ public class BookmarksProviderWrapper {
 
 		ContentValues values = new ContentValues();
 		if (title != null) {
-			values.put(Browser.BookmarkColumns.TITLE, title);
+			values.put("TITLE", title);
 		}
 
 		if (url != null) {
-			values.put(Browser.BookmarkColumns.URL, url);
+			values.put("URL", url);
 		}
 
 		if (isBookmark) {
-			values.put(Browser.BookmarkColumns.BOOKMARK, 1);
-			values.put(Browser.BookmarkColumns.CREATED, new Date().getTime());
+			values.put("BOOKMARK", 1);
+			values.put("CREATED", new Date().getTime());
 		} else {
-			values.put(Browser.BookmarkColumns.BOOKMARK, 0);
+			values.put("BOOKMARK", 0);
 		}
 
 		if (bookmarkExist) {
 			contentResolver.update(BOOKMARKS_URI, values,
-					Browser.BookmarkColumns._ID + " = " + id, null);
+					"_ID" + " = " + id, null);
 		} else {
 			contentResolver.insert(BOOKMARKS_URI, values);
 		}
@@ -281,8 +281,8 @@ public class BookmarksProviderWrapper {
 
 	public static void toggleBookmark(ContentResolver contentResolver, long id,
 			boolean bookmark) {
-		String[] colums = new String[] { Browser.BookmarkColumns._ID };
-		String whereClause = Browser.BookmarkColumns._ID + " = " + id;
+		String[] colums = new String[] { "_ID" };
+		String whereClause = "_ID" + " = " + id;
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 				whereClause, null, null);
@@ -291,12 +291,12 @@ public class BookmarksProviderWrapper {
 		if (recordExists) {
 			ContentValues values = new ContentValues();
 
-			values.put(Browser.BookmarkColumns.BOOKMARK, bookmark);
+			values.put("BOOKMARK", bookmark);
 			if (bookmark) {
-				values.put(Browser.BookmarkColumns.CREATED,
+				values.put("CREATED",
 						new Date().getTime());
 			} else {
-				values.putNull(Browser.BookmarkColumns.CREATED);
+				values.putNull("CREATED");
 			}
 
 			contentResolver.update(BOOKMARKS_URI, values, whereClause, null);
@@ -304,8 +304,8 @@ public class BookmarksProviderWrapper {
 	}
 
 	public static Cursor getHistory(ContentResolver contentResolver) {
-		String whereClause = Browser.BookmarkColumns.VISITS + " > 0";
-		String orderClause = Browser.BookmarkColumns.DATE + " DESC";
+		String whereClause = "VISITS" + " > 0";
+		String orderClause = "DATE" + " DESC";
 
 		return contentResolver.query(BOOKMARKS_URI, sBookmarksProjection,
 				whereClause, null, orderClause);
@@ -322,19 +322,19 @@ public class BookmarksProviderWrapper {
 	 */
 	public static void deleteHistoryRecord(ContentResolver contentResolver,
 			long id) {
-		String whereClause = Browser.BookmarkColumns._ID + " = " + id;
+		String whereClause = "_ID" + " = " + id;
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI,
 				sBookmarksProjection, whereClause, null, null);
 		if (cursor != null) {
 			if (cursor.moveToFirst()) {
 				if (cursor.getInt(cursor
-						.getColumnIndex(Browser.BookmarkColumns.BOOKMARK)) == 1) {
+						.getColumnIndex("BOOKMARK")) == 1) {
 					// The record is a bookmark, so we cannot delete it.
 					// Instead, reset its visited count and last visited date.
 					ContentValues values = new ContentValues();
-					values.put(Browser.BookmarkColumns.VISITS, 0);
-					values.putNull(Browser.BookmarkColumns.DATE);
+					values.put("VISITS", 0);
+					values.putNull("DATE");
 
 					contentResolver.update(BOOKMARKS_URI, values, whereClause,
 							null);
@@ -362,11 +362,11 @@ public class BookmarksProviderWrapper {
 	 */
 	public static void updateHistory(ContentResolver contentResolver,
 			String title, String url, String originalUrl) {
-		String[] colums = new String[] { Browser.BookmarkColumns._ID,
-				Browser.BookmarkColumns.URL, Browser.BookmarkColumns.BOOKMARK,
-				Browser.BookmarkColumns.VISITS };
-		String whereClause = Browser.BookmarkColumns.URL + " = \"" + url
-				+ "\" OR " + Browser.BookmarkColumns.URL + " = \""
+		String[] colums = new String[] { "_ID",
+				"URL", "BOOKMARK",
+				"VISITS" };
+		String whereClause = "URL" + " = \"" + url
+				+ "\" OR " + "URL" + " = \""
 				+ originalUrl + "\"";
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
@@ -376,9 +376,9 @@ public class BookmarksProviderWrapper {
 			if (cursor.moveToFirst()) {
 
 				long id = cursor.getLong(cursor
-						.getColumnIndex(Browser.BookmarkColumns._ID));
+						.getColumnIndex("_ID"));
 				int visits = cursor.getInt(cursor
-						.getColumnIndex(Browser.BookmarkColumns.VISITS)) + 1;
+						.getColumnIndex("VISITS")) + 1;
 
 				ContentValues values = new ContentValues();
 
@@ -386,23 +386,23 @@ public class BookmarksProviderWrapper {
 				// doing it on bookmarks, we would override the title choosen by
 				// the user.
 				if (cursor.getInt(cursor
-						.getColumnIndex(Browser.BookmarkColumns.BOOKMARK)) != 1) {
-					values.put(Browser.BookmarkColumns.TITLE, title);
+						.getColumnIndex("BOOKMARK")) != 1) {
+					values.put("TITLE", title);
 				}
 
-				values.put(Browser.BookmarkColumns.DATE, new Date().getTime());
-				values.put(Browser.BookmarkColumns.VISITS, visits);
+				values.put("DATE", new Date().getTime());
+				values.put("VISITS", visits);
 
 				contentResolver.update(BOOKMARKS_URI, values,
-						Browser.BookmarkColumns._ID + " = " + id, null);
+						"_ID" + " = " + id, null);
 
 			} else {
 				ContentValues values = new ContentValues();
-				values.put(Browser.BookmarkColumns.TITLE, title);
-				values.put(Browser.BookmarkColumns.URL, url);
-				values.put(Browser.BookmarkColumns.DATE, new Date().getTime());
-				values.put(Browser.BookmarkColumns.VISITS, 1);
-				values.put(Browser.BookmarkColumns.BOOKMARK, 0);
+				values.put("TITLE", title);
+				values.put("URL", url);
+				values.put("DATE", new Date().getTime());
+				values.put("VISITS", 1);
+				values.put("BOOKMARK", 0);
 
 				contentResolver.insert(BOOKMARKS_URI, values);
 			}
@@ -435,9 +435,9 @@ public class BookmarksProviderWrapper {
 		c.set(Calendar.MILLISECOND, 0);
 		c.add(Calendar.DAY_OF_YEAR, -historySize);
 
-		String whereClause = "(" + Browser.BookmarkColumns.BOOKMARK
-				+ " = 0 OR " + Browser.BookmarkColumns.BOOKMARK
-				+ " IS NULL) AND " + Browser.BookmarkColumns.DATE + " < "
+		String whereClause = "(" + "BOOKMARK"
+				+ " = 0 OR " + "BOOKMARK"
+				+ " IS NULL) AND " + "DATE" + " < "
 				+ c.getTimeInMillis();
 
 		try {
@@ -466,11 +466,11 @@ public class BookmarksProviderWrapper {
 		String whereClause;
 
 		if (!url.equals(originalUrl)) {
-			whereClause = Browser.BookmarkColumns.URL + " = \"" + url
-					+ "\" OR " + Browser.BookmarkColumns.URL + " = \""
+			whereClause = "URL" + " = \"" + url
+					+ "\" OR " + "URL" + " = \""
 					+ originalUrl + "\"";
 		} else {
-			whereClause = Browser.BookmarkColumns.URL + " = \"" + url + "\"";
+			whereClause = "URL" + " = \"" + url + "\"";
 		}
 
 		// BitmapDrawable icon =
@@ -482,12 +482,12 @@ public class BookmarksProviderWrapper {
 		icon.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, os);
 
 		ContentValues values = new ContentValues();
-		values.put(Browser.BookmarkColumns.FAVICON, os.toByteArray());
+		values.put("FAVICON", os.toByteArray());
 
 		// Hack: Starting from Honeycomb, simple update of the favicon through
 		// an error, it need another field to update correctly...
 		if (Build.VERSION.SDK_INT >= 11) {
-			values.put(Browser.BookmarkColumns.URL, url);
+			values.put("URL", url);
 		}
 
 		try {
@@ -522,10 +522,10 @@ public class BookmarksProviderWrapper {
 		if (clearHistory && clearBookmarks) {
 			whereClause = null;
 		} else if (clearHistory) {
-			whereClause = "(" + Browser.BookmarkColumns.BOOKMARK + " = 0) OR ("
-					+ Browser.BookmarkColumns.BOOKMARK + " IS NULL)";
+			whereClause = "(" + "BOOKMARK" + " = 0) OR ("
+					+ "BOOKMARK" + " IS NULL)";
 		} else if (clearBookmarks) {
-			whereClause = Browser.BookmarkColumns.BOOKMARK + " = 1";
+			whereClause = "BOOKMARK" + " = 1";
 		}
 
 		contentResolver.delete(BOOKMARKS_URI, whereClause, null);
@@ -553,26 +553,26 @@ public class BookmarksProviderWrapper {
 			String title, String url, int visits, long date, long created,
 			int bookmark) {
 		ContentValues values = new ContentValues();
-		values.put(Browser.BookmarkColumns.TITLE, title);
-		values.put(Browser.BookmarkColumns.URL, url);
-		values.put(Browser.BookmarkColumns.VISITS, visits);
+		values.put("TITLE", title);
+		values.put("URL", url);
+		values.put("VISITS", visits);
 
 		if (date > 0) {
-			values.put(Browser.BookmarkColumns.DATE, date);
+			values.put("DATE", date);
 		} else {
-			values.putNull(Browser.BookmarkColumns.DATE);
+			values.putNull("DATE");
 		}
 
 		if (created > 0) {
-			values.put(Browser.BookmarkColumns.CREATED, created);
+			values.put("CREATED", created);
 		} else {
-			values.putNull(Browser.BookmarkColumns.CREATED);
+			values.putNull("CREATED");
 		}
 
 		if (bookmark > 0) {
-			values.put(Browser.BookmarkColumns.BOOKMARK, 1);
+			values.put("BOOKMARK", 1);
 		} else {
-			values.put(Browser.BookmarkColumns.BOOKMARK, 0);
+			values.put("BOOKMARK", 0);
 		}
 
 		contentResolver.insert(BOOKMARKS_URI, values);

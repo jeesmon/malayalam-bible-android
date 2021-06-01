@@ -117,8 +117,8 @@ public class BookmarksListActivity extends Activity {
 				.getBookmarks(getContentResolver(), 2);
 		startManagingCursor(mCursor);
 
-		String[] from = new String[] { Browser.BookmarkColumns.TITLE,
-				Browser.BookmarkColumns.CREATED };
+		String[] from = new String[] { "TITLE",
+				"CREATED" };
 		int[] to = new int[] { R.id.BookmarkRow_Title, R.id.BookmarkRow_Created };
 
 		mCursorAdapter = new BookmarksCursorAdapter(this,

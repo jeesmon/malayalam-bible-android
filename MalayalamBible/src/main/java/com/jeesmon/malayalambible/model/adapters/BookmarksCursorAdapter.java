@@ -38,7 +38,7 @@ public class BookmarksCursorAdapter extends SimpleCursorAdapter {
 					tv.setTextSize(fontSize - 4);
 					try {
 						long dateLong = cursor.getLong(cursor
-								.getColumnIndex(Browser.BookmarkColumns.CREATED));
+								.getColumnIndex("CREATED"));
 						if (dateLong > 0) {
 							Date d = new Date(dateLong);
 							tv.setText(df.format(d));

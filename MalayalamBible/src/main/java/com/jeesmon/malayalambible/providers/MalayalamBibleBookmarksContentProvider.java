@@ -29,10 +29,12 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.Browser;
+import android.util.Log;
 
 import com.jeesmon.malayalambible.sqlite.SDCardSQLiteOpenHelper;
 
 public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
+	private static final String TAG = "Bible";
 	private static final Uri CONTENT_URI = Uri.parse("content://"
 			+ MalayalamBibleBookmarksContentProvider.AUTHORITY + "/"
 			+ MalayalamBibleBookmarksContentProvider.BOOKMARKS_TABLE);
@@ -49,15 +51,15 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 	public static final String BOOKMARKS_TABLE = "bookmarks";
 
 	private static final String BOOKMARKS_TABLE_CREATE = "CREATE TABLE "
-			+ BOOKMARKS_TABLE + " (" + Browser.BookmarkColumns._ID
+			+ BOOKMARKS_TABLE + " (" + "_ID"
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ Browser.BookmarkColumns.TITLE + " TEXT, "
-			+ Browser.BookmarkColumns.URL + " TEXT, "
-			+ Browser.BookmarkColumns.VISITS + " INTEGER, "
-			+ Browser.BookmarkColumns.DATE + " LONG, "
-			+ Browser.BookmarkColumns.CREATED + " LONG, "
-			+ Browser.BookmarkColumns.BOOKMARK + " INTEGER, "
-			+ Browser.BookmarkColumns.FAVICON + " BLOB DEFAULT NULL);";
+			+ "TITLE" + " TEXT, "
+			+ "URL" + " TEXT, "
+			+ "VISITS" + " INTEGER, "
+			+ "DATE" + " LONG, "
+			+ "CREATED" + " LONG, "
+			+ "BOOKMARK" + " INTEGER, "
+			+ "FAVICON" + " BLOB DEFAULT NULL);";
 
 	private static final int BOOKMARKS = 1;
 	private static final int BOOKMARKS_BY_ID = 2;
@@ -146,7 +148,7 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 			break;
 		case BOOKMARKS_BY_ID:
 			qb.setTables(BOOKMARKS_TABLE);
-			qb.appendWhere(Browser.BookmarkColumns._ID + " = "
+			qb.appendWhere("_ID" + " = "
 					+ uri.getPathSegments().get(1));
 			break;
 		default:
@@ -191,11 +193,14 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 			} else {
 				mDbPath = INTERNAL_DB_PATH;
 			}
+			Log.e(TAG, "DB Path : " + mDbPath);
 
 			File dir = new File(mDbPath);
 			if (!dir.exists()) {
 				dir.mkdirs();
-			}
+				Log.e(TAG, "Directory dont exist, created");
+			} else
+				Log.e(TAG, "Directory exists");
 		}
 
 		return mDbPath;
