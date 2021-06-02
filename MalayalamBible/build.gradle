@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.jeesmon.malayalambible"
-        targetSdkVersion 28
-        minSdkVersion 28
+        targetSdkVersion 26
+        minSdkVersion 23
     }
 
     buildTypes {
