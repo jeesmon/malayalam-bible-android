@@ -49,6 +49,8 @@ public class MalayalamBibleActivity extends BaseActivity {
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
 					STORAGE_PERMISSION_CODE);
 		}
+		else
+			getContent();
 	}
 
 
