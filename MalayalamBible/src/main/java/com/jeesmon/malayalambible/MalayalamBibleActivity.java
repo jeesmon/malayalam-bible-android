@@ -42,12 +42,11 @@ public class MalayalamBibleActivity extends BaseActivity {
 		context = this;
 		preferenceChanged = false;
 		if ((ContextCompat.checkSelfPermission(MalayalamBibleActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				== PackageManager.PERMISSION_DENIED) && (ContextCompat.checkSelfPermission(MalayalamBibleActivity.this, Manifest.permission.RECORD_AUDIO)
 				== PackageManager.PERMISSION_DENIED))
 		{
 			// Requesting the permission
 			ActivityCompat.requestPermissions(MalayalamBibleActivity.this,
-					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO },
+					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
 					STORAGE_PERMISSION_CODE);
 		}
 	}
