@@ -51,7 +51,7 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 	public static final String BOOKMARKS_TABLE = "bookmarks";
 
 	private static final String BOOKMARKS_TABLE_CREATE = "CREATE TABLE "
-			+ BOOKMARKS_TABLE + " (" + "_ID"
+			+ BOOKMARKS_TABLE + " (" + "_id"
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ "TITLE" + " TEXT, "
 			+ "URL" + " TEXT, "
@@ -148,7 +148,7 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 			break;
 		case BOOKMARKS_BY_ID:
 			qb.setTables(BOOKMARKS_TABLE);
-			qb.appendWhere("_ID" + " = "
+			qb.appendWhere("_id" + " = "
 					+ uri.getPathSegments().get(1));
 			break;
 		default:

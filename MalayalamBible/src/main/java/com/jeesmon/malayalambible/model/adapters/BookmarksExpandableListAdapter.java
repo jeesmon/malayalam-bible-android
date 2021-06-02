@@ -198,7 +198,7 @@ public class BookmarksExpandableListAdapter extends BaseExpandableListAdapter {
 		moveCursorToChildPosition(groupPosition, childPosition);
 
 		return new BookmarkItem(mCursor.getLong(mCursor
-				.getColumnIndex("_ID")),
+				.getColumnIndex("_id")),
 				mCursor.getString(mCursor
 						.getColumnIndex("TITLE")),
 				mCursor.getString(mCursor

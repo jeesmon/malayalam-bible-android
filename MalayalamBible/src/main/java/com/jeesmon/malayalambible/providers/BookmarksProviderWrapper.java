@@ -40,7 +40,7 @@ public class BookmarksProviderWrapper {
 			+ MalayalamBibleBookmarksContentProvider.BOOKMARKS_TABLE);
 
 	private static String[] sBookmarksProjection = new String[] {
-			"_ID", "TITLE",
+			"_id", "TITLE",
 			"URL", "VISITS",
 			"DATE", "CREATED",
 			"BOOKMARK", "FAVICON" };
@@ -101,7 +101,7 @@ public class BookmarksProviderWrapper {
 
 		String whereClause = "BOOKMARK"+ " = 1";
 		String orderClause = "VISITS" + " DESC";
-		String[] colums = new String[] { "_ID",
+		String[] colums = new String[] { "_id",
 				"TITLE", "URL",
 				"FAVICON" };
 
@@ -111,7 +111,7 @@ public class BookmarksProviderWrapper {
 		if (cursor != null) {
 			if (cursor.moveToFirst()) {
 				int columnId = cursor
-						.getColumnIndex("_ID");
+						.getColumnIndex("_id");
 				int columnTitle = cursor
 						.getColumnIndex("TITLE");
 				int columnUrl = cursor
@@ -141,7 +141,7 @@ public class BookmarksProviderWrapper {
 	public static BookmarkItem getBookmarkById(ContentResolver contentResolver,
 			long id) {
 		BookmarkItem result = null;
-		String whereClause = "_ID" + " = " + id;
+		String whereClause = "_id" + " = " + id;
 
 		Cursor c = contentResolver.query(BOOKMARKS_URI, sBookmarksProjection,
 				whereClause, null, null);
@@ -161,7 +161,7 @@ public class BookmarksProviderWrapper {
 	}
 
 	public static void deleteBookmark(ContentResolver contentResolver, long id) {
-		String whereClause = "_ID" + " = " + id;
+		String whereClause = "_id" + " = " + id;
 
 		Cursor c = contentResolver.query(BOOKMARKS_URI, sBookmarksProjection,
 				whereClause, null, null);
@@ -215,14 +215,14 @@ public class BookmarksProviderWrapper {
 		boolean bookmarkExist = false;
 
 		if (id != -1) {
-			String[] colums = new String[] { "_ID" };
-			String whereClause = "_ID" + " = " + id;
+			String[] colums = new String[] { "_id" };
+			String whereClause = "_id" + " = " + id;
 
 			Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 					whereClause, null, null);
 			bookmarkExist = (cursor != null) && (cursor.moveToFirst());
 		} else {
-			String[] colums = new String[] { "_ID",
+			String[] colums = new String[] { "_id",
 					"CREATED" };
 			String whereClause = "URL" + " = \"" + url
 					+ "\"";
@@ -247,7 +247,7 @@ public class BookmarksProviderWrapper {
 						bookmarkExist = false;
 					} else {
 						id = cursor.getLong(cursor
-								.getColumnIndex("_ID"));
+								.getColumnIndex("_id"));
 					}
 				} catch (Exception e) {
 					bookmarkExist = false;
@@ -273,7 +273,7 @@ public class BookmarksProviderWrapper {
 
 		if (bookmarkExist) {
 			contentResolver.update(BOOKMARKS_URI, values,
-					"_ID" + " = " + id, null);
+					"_id" + " = " + id, null);
 		} else {
 			contentResolver.insert(BOOKMARKS_URI, values);
 		}
@@ -281,8 +281,8 @@ public class BookmarksProviderWrapper {
 
 	public static void toggleBookmark(ContentResolver contentResolver, long id,
 			boolean bookmark) {
-		String[] colums = new String[] { "_ID" };
-		String whereClause = "_ID" + " = " + id;
+		String[] colums = new String[] { "_id" };
+		String whereClause = "_id" + " = " + id;
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI, colums,
 				whereClause, null, null);
@@ -322,7 +322,7 @@ public class BookmarksProviderWrapper {
 	 */
 	public static void deleteHistoryRecord(ContentResolver contentResolver,
 			long id) {
-		String whereClause = "_ID" + " = " + id;
+		String whereClause = "_id" + " = " + id;
 
 		Cursor cursor = contentResolver.query(BOOKMARKS_URI,
 				sBookmarksProjection, whereClause, null, null);
@@ -362,7 +362,7 @@ public class BookmarksProviderWrapper {
 	 */
 	public static void updateHistory(ContentResolver contentResolver,
 			String title, String url, String originalUrl) {
-		String[] colums = new String[] { "_ID",
+		String[] colums = new String[] { "_id",
 				"URL", "BOOKMARK",
 				"VISITS" };
 		String whereClause = "URL" + " = \"" + url
@@ -376,7 +376,7 @@ public class BookmarksProviderWrapper {
 			if (cursor.moveToFirst()) {
 
 				long id = cursor.getLong(cursor
-						.getColumnIndex("_ID"));
+						.getColumnIndex("_id"));
 				int visits = cursor.getInt(cursor
 						.getColumnIndex("VISITS")) + 1;
 
@@ -394,7 +394,7 @@ public class BookmarksProviderWrapper {
 				values.put("VISITS", visits);
 
 				contentResolver.update(BOOKMARKS_URI, values,
-						"_ID" + " = " + id, null);
+						"_id" + " = " + id, null);
 
 			} else {
 				ContentValues values = new ContentValues();
