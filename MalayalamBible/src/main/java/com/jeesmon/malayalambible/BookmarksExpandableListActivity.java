@@ -81,7 +81,7 @@ public class BookmarksExpandableListActivity extends ExpandableListActivity {
 		startManagingCursor(mCursor);
 
 		mAdapter = new BookmarksExpandableListAdapter(this, mCursor,
-				mCursor.getColumnIndex(Browser.BookmarkColumns.CREATED));
+				mCursor.getColumnIndex("CREATED"));
 
 		setListAdapter(mAdapter);
 

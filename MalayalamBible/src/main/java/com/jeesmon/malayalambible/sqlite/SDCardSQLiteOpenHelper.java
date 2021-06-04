@@ -1,5 +1,6 @@
 package com.jeesmon.malayalambible.sqlite;
 
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteException;
@@ -117,8 +118,14 @@ public abstract class SDCardSQLiteOpenHelper {
 				String path = mDir + "/" + mName;
 				// db = mContext.openOrCreateDatabase(mName, 0, mFactory,
 				// mErrorHandler);
-				db = SQLiteDatabase.openDatabase(path, null,
-						SQLiteDatabase.CREATE_IF_NECESSARY);
+				try {
+					db = SQLiteDatabase.openDatabase(path, null,
+							SQLiteDatabase.CREATE_IF_NECESSARY);
+				} catch(SQLiteCantOpenDatabaseException e)
+				{
+					e.printStackTrace();
+					return null;
+				}
 			}
 
 			int version = db.getVersion();
