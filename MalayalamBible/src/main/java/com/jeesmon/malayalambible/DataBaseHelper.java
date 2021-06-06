@@ -185,7 +185,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 			if (Environment.MEDIA_MOUNTED.equals(state)) {
 				dbPath = Environment.getExternalStorageDirectory()
 						.getAbsolutePath()
-						+ "/Android/com.jeesmon.malayalambible/db/";
+						+ "/Android/media/com.jeesmon.malayalambible/db/";
 			} else {
 				dbPath = DB_PATH;
 			}

@@ -189,7 +189,7 @@ public class MalayalamBibleBookmarksContentProvider extends ContentProvider {
 			if (Environment.MEDIA_MOUNTED.equals(state)) {
 				mDbPath = Environment.getExternalStorageDirectory()
 						.getAbsolutePath()
-						+ "/Android/com.jeesmon.malayalambible/db";
+						+ "/Android/media/com.jeesmon.malayalambible/db";
 			} else {
 				mDbPath = INTERNAL_DB_PATH;
 			}
