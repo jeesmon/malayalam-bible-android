@@ -26,3 +26,4 @@ proguard/
 
 .idea
 *.iml
+release
